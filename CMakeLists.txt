@@ -1,7 +1,5 @@
 project (crypto C)
 
-find_package (Msvc)
-
 add_library (crypto mt19937ar.c md5.c)
 
 add_executable (md5main md5main.c)
