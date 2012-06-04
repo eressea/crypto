@@ -12,10 +12,10 @@ endif (EXISTS ${M_LIB})
 enable_testing()
 add_test (md5 md5main --tests)
 
-find_package (MSVC QUIET)
-if (${MSVC_FOUND})
+IF (MSVC)
+    find_package (MSVC MODULE)
     MSVC_CRT_SECURE_NO_WARNINGS (md5main)
-endif (${MSVC_FOUND})
+ENDIF (MSVC)
 
 set (CRYPTO_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR} CACHE INTERNAL "Crypto headers")
 set (CRYPTO_LIBRARIES crypto CACHE INTERNAL "crypto libraries")
