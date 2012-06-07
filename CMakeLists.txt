@@ -1,6 +1,8 @@
 project (crypto C)
 
-add_library (${PROJECT_NAME} mt19937ar.c md5.c)
+FILE (GLOB LIB_HDR *.h)
+SET (LIB_SRC mt19937ar.c md5.c)
+add_library (${PROJECT_NAME} ${LIB_SRC} ${LIB_HDR})
 
 add_executable (md5main md5main.c)
 target_link_libraries (md5main crypto)
