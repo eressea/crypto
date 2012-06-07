@@ -1,6 +1,15 @@
+cmake_minimum_required(VERSION 2.8)
 project (crypto C)
 
-add_library (${PROJECT_NAME} mt19937ar.c md5.c)
+IF(CMAKE_COMPILER_IS_GNUCC)
+    SET(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -pedantic -Wall -Werror -Wno-unknown-pragmas -Wstrict-prototypes -Wpointer-arith -Wno-char-subscripts -Wno-long-long")
+ELSE(CMAKE_COMPILER_IS_GNUCC)
+    MESSAGE(STATUS "Unknown compiler ${CMAKE_C_COMPILER_ID}")
+ENDIF(CMAKE_COMPILER_IS_GNUCC)
+
+FILE (GLOB LIB_HDR *.h)
+SET (LIB_SRC mt19937ar.c md5.c)
+add_library (${PROJECT_NAME} ${LIB_SRC} ${LIB_HDR})
 
 add_executable (md5main md5main.c)
 target_link_libraries (md5main crypto)
