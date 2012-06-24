@@ -1,0 +1,10 @@
+*~
+Debug/
+ipch/
+Release/
+bin/
+*.suo
+*.sdf
+*.o
+*.opensdf
+config
